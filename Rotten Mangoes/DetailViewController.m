@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) NSMutableArray *reviewArray;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *critic1;
 @property (weak, nonatomic) IBOutlet UILabel *publication1;
@@ -36,6 +38,8 @@
     [super viewDidLoad];
     
     self.titleLabel.text = self.movie.movieName;
+    self.descriptionLabel.text = self.movie.movieDescription;
+    self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.movie.movieImage]]];
     
     NSURLSession *session = [NSURLSession sharedSession];
     
