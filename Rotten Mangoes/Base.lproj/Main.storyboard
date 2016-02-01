@@ -136,14 +136,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Testing Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96f-ae-YAb">
-                                <rect key="frame" x="187" y="69" width="309" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96f-ae-YAb">
+                                <rect key="frame" x="38" y="108" width="525" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="525" id="dEf-sb-eEM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="96f-ae-YAb" firstAttribute="leading" secondItem="d2o-aW-3aT" secondAttribute="leadingMargin" constant="10" id="MXO-N8-0P0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="96f-ae-YAb" secondAttribute="trailing" constant="26" id="akn-vj-VfB"/>
+                            <constraint firstItem="96f-ae-YAb" firstAttribute="centerX" secondItem="d2o-aW-3aT" secondAttribute="centerX" id="cgA-C6-ZyW"/>
+                            <constraint firstItem="96f-ae-YAb" firstAttribute="top" secondItem="gFe-cW-wO1" secondAttribute="bottom" constant="44" id="dxO-J0-TCq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MXO-N8-0P0"/>
+                                <exclude reference="akn-vj-VfB"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="titleLabel" destination="96f-ae-YAb" id="nl1-IR-b5u"/>

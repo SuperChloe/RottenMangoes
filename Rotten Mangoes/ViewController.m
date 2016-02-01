@@ -42,6 +42,7 @@
                     movie.movieName = movieDictionary[@"title"];
                     movie.movieDescription = movieDictionary[@"synopsis"];
                     movie.movieImage = movieDictionary[@"posters"][@"original"];
+                    movie.reviewURL = movieDictionary[@"links"][@"reviews"];
                     
                     [movieList addObject:movie];
                 }
