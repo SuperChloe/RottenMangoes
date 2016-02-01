@@ -19,15 +19,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *critic1;
 @property (weak, nonatomic) IBOutlet UILabel *publication1;
 @property (weak, nonatomic) IBOutlet UILabel *quote1;
-@property (weak, nonatomic) IBOutlet UILabel *url1;
+@property (weak, nonatomic) IBOutlet UITextView *url1;
 @property (weak, nonatomic) IBOutlet UILabel *critic2;
 @property (weak, nonatomic) IBOutlet UILabel *publication2;
 @property (weak, nonatomic) IBOutlet UILabel *quote2;
-@property (weak, nonatomic) IBOutlet UILabel *url2;
+@property (weak, nonatomic) IBOutlet UITextView *url2;
 @property (weak, nonatomic) IBOutlet UILabel *critic3;
 @property (weak, nonatomic) IBOutlet UILabel *publication3;
 @property (weak, nonatomic) IBOutlet UILabel *quote3;
-@property (weak, nonatomic) IBOutlet UILabel *url3;
+@property (weak, nonatomic) IBOutlet UITextView *url3;
+
 
 
 @end
