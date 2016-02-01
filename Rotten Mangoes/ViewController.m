@@ -40,6 +40,7 @@
                     Movie *movie = [[Movie alloc] init];
                     movie.movieName = movieDictionary[@"title"];
                     movie.movieDescription = movieDictionary[@"synopsis"];
+                    movie.movieImage = movieDictionary[@"posters"][@"original"];
                     
                     [movieList addObject:movie];
                 }
@@ -69,6 +70,7 @@
     MovieCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     Movie *movie = self.objects[indexPath.row];
     cell.titleLabel.text = movie.movieName;
+    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:movie.movieImage]]];
     return cell;
 }
 
