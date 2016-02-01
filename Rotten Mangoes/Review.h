@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSString *critic;
 @property (strong, nonatomic) NSString *publication;
 @property (strong, nonatomic) NSString *quote;
+@property (strong, nonatomic) NSString *url;
 
 @end
