@@ -68,7 +68,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     Movie *movie = self.objects[indexPath.row];
-    cell.backgroundColor = [UIColor blueColor];
     cell.titleLabel.text = movie.movieName;
     return cell;
 }
