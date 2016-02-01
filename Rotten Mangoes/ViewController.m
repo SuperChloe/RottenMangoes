@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Movie.h"
 #import "MovieCell.h"
+#import "DetailViewController.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -58,6 +59,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
+        Movie *movie = self.objects[indexPath.row];
+        DetailViewController *controller = (DetailViewController *)segue.destinationViewController;
+        controller.movie = movie;
+    }
 }
 
 #pragma mark - Collection View
