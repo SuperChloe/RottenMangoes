@@ -48,8 +48,8 @@
                                         </view>
                                         <size key="customSize" width="178" height="185"/>
                                         <connections>
-                                            <outlet property="imageView" destination="nxS-Rt-svn" id="mzP-6Z-TlJ"/>
-                                            <outlet property="titleLabel" destination="PbZ-oe-2kx" id="w7R-x5-9dt"/>
+                                            <outlet property="imageView" destination="nxS-Rt-svn" id="pdm-fE-zUC"/>
+                                            <outlet property="titleLabel" destination="PbZ-oe-2kx" id="u1D-4R-3Zc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

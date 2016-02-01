@@ -21,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.collectionView registerClass:[MovieCell class] forCellWithReuseIdentifier:@"Cell"];
 
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -40,8 +38,8 @@
                 NSMutableArray *movieList = [NSMutableArray array];
                 for (NSDictionary *movieDictionary in jsonData[@"movies"]) {
                     Movie *movie = [[Movie alloc] init];
-                    movie.movieName = movieDictionary[@"full_name"];
-                    movie.movieDescription = movieDictionary[@"description"];
+                    movie.movieName = movieDictionary[@"title"];
+                    movie.movieDescription = movieDictionary[@"synopsis"];
                     
                     [movieList addObject:movie];
                 }
