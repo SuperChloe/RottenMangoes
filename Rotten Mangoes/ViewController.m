@@ -84,7 +84,6 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
             NSError *jsonParsingError;
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
             if (!jsonParsingError) {
-                NSLog(@"%@", jsonData);
                 
                 self.maxNum = [jsonData[@"total"] intValue];
                 

@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "Review.h"
+#import "MapViewController.h"
 
 @interface DetailViewController ()
 
@@ -54,6 +55,13 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showMapView"]) {
+        MapViewController *controller = (MapViewController *)segue.destinationViewController;
+        controller.movie = self.movie;
+    }
+}
+
 #pragma mark - Helper methods
 
 - (void)loadDetailData {
@@ -68,7 +76,6 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
             NSError *jsonParsingError;
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
             if (!jsonParsingError) {
-                NSLog(@"%@", jsonData);
                 
                 for (NSDictionary *reviewDictionary in jsonData[@"reviews"]) {
                     Review *review = [[Review alloc] init];
