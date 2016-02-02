@@ -83,15 +83,10 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
                         Theatre *theatre = [[Theatre alloc] init];
-                        theatre.name = theatreDictionary[@"name"];
-                        theatre.address = theatreDictionary[@"address"];
+                        theatre.title = theatreDictionary[@"name"];
+                        theatre.subtitle = theatreDictionary[@"address"];
                         theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"] doubleValue], [theatreDictionary[@"lng"] doubleValue]);
-                        
-                        MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
-                        marker.coordinate = theatre.coordinate;
-                        marker.title = theatre.name;
-                        marker.subtitle = theatre.address;
-                        [self.mapView addAnnotation:marker];
+                        [self.mapView addAnnotation:theatre];
                     }
                 });
             }

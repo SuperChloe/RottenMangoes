@@ -11,8 +11,8 @@
 
 @interface Theatre : NSObject <MKAnnotation>
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *address;
+@property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *subtitle;
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 
 @end
