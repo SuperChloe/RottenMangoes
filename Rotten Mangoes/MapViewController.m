@@ -13,8 +13,10 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *userLocation;
 @property (strong, nonatomic) NSString *postalCode;
 @property (strong, nonatomic) NSMutableArray *theatreArray;
+@property (assign, nonatomic) BOOL initialLocationSet;
 
 @end
 
@@ -23,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.theatreArray = [[NSMutableArray alloc] init];
+    self.initialLocationSet = NO;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.mapView.delegate = self;
@@ -31,6 +35,7 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,13 +52,19 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *userLocation = [locations lastObject];
-    self.mapView.region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.02, 0.02));
+    if (!self.initialLocationSet) {
+        self.initialLocationSet = YES;
+    
+    
+    self.userLocation = [locations lastObject];
+    self.mapView.region = MKCoordinateRegionMake(self.userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01));
     
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-    [geoCoder reverseGeocodeLocation:userLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+    [geoCoder reverseGeocodeLocation:self.userLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         self.postalCode = placemarks[0].postalCode;
+        [self loadData];
     }];
+    }
 }
 
 #pragma mark - Helper methods
@@ -62,7 +73,7 @@
     
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=%@&movie=%@", self.postalCode, self.movie.movieName];
+    NSString *urlString = [NSString stringWithFormat:@"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=%@&movie=%@", [self.postalCode stringByReplacingOccurrencesOfString:@" " withString:@"%20"], [self.movie.movieName stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -72,23 +83,29 @@
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
             if (!jsonParsingError) {
                 
+            dispatch_async(dispatch_get_main_queue(), ^{
                 for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
                     Theatre *theatre = [[Theatre alloc] init];
                     theatre.name = theatreDictionary[@"name"];
                     theatre.address = theatreDictionary[@"address"];
                     theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"] doubleValue], [theatreDictionary[@"lng"] doubleValue]);
                     
-                    [self.theatreArray addObject:theatre];
+                    NSLog(@"%f, %f", theatre.coordinate.latitude, theatre.coordinate.longitude);
+                    
+                    MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
+                    marker.coordinate = theatre.coordinate;
+                    marker.title = theatre.name;
+                    
+                    [self.mapView addAnnotation:marker];
+                    
+                    
+                    
                 }
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Do something
                 });
             }
         }
     }];
     [dataTask resume];
-    
 }
 
 @end

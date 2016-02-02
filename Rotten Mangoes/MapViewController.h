@@ -14,4 +14,7 @@
 
 @property (strong, nonatomic) Movie *movie;
 
+- (void)loadData;
+- (NSString *)postalCode;
+
 @end
