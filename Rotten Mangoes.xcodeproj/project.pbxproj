@@ -18,6 +18,7 @@
 		899EB31E1C5FEE640016F3F1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899EB31D1C5FEE640016F3F1 /* DetailViewController.m */; };
 		899EB3211C6001670016F3F1 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 899EB3201C6001670016F3F1 /* Review.m */; };
 		899EB3241C610AA10016F3F1 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899EB3231C610AA10016F3F1 /* MapViewController.m */; };
+		899EB3261C610DB50016F3F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899EB3251C610DB50016F3F1 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		899EB3201C6001670016F3F1 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		899EB3221C610AA10016F3F1 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		899EB3231C610AA10016F3F1 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		899EB3251C610DB50016F3F1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899EB3261C610DB50016F3F1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +60,7 @@
 		899EB2F31C5FC24A0016F3F1 = {
 			isa = PBXGroup;
 			children = (
+				899EB3251C610DB50016F3F1 /* MapKit.framework */,
 				899EB2FE1C5FC24A0016F3F1 /* Rotten Mangoes */,
 				899EB2FD1C5FC24A0016F3F1 /* Products */,
 			);
@@ -136,6 +140,11 @@
 					899EB2FB1C5FC24A0016F3F1 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = E6AQH2F3ME;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

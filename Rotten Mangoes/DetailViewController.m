@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *showTheatresButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *critic1;
 @property (weak, nonatomic) IBOutlet UILabel *publication1;
@@ -43,6 +44,7 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
     self.titleLabel.text = self.movie.movieName;
     self.descriptionLabel.text = self.movie.movieDescription;
     self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.movie.movieImage]]];
+    self.showTheatresButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
     [self loadDetailData];    
 }
