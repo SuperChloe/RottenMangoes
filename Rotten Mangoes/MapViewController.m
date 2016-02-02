@@ -24,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.theatreArray = [[NSMutableArray alloc] init];
     self.initialLocationSet = NO;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -91,7 +90,7 @@
                         MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
                         marker.coordinate = theatre.coordinate;
                         marker.title = theatre.name;
-                        
+                        marker.subtitle = theatre.address;
                         [self.mapView addAnnotation:marker];
                     }
                 });
