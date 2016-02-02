@@ -17,6 +17,7 @@
 		899EB31B1C5FDEA60016F3F1 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 899EB31A1C5FDEA60016F3F1 /* MovieCell.m */; };
 		899EB31E1C5FEE640016F3F1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899EB31D1C5FEE640016F3F1 /* DetailViewController.m */; };
 		899EB3211C6001670016F3F1 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 899EB3201C6001670016F3F1 /* Review.m */; };
+		899EB3241C610AA10016F3F1 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899EB3231C610AA10016F3F1 /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		899EB31D1C5FEE640016F3F1 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		899EB31F1C6001670016F3F1 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		899EB3201C6001670016F3F1 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		899EB3221C610AA10016F3F1 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		899EB3231C610AA10016F3F1 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				899EB3061C5FC24A0016F3F1 /* ViewController.m */,
 				899EB31C1C5FEE640016F3F1 /* DetailViewController.h */,
 				899EB31D1C5FEE640016F3F1 /* DetailViewController.m */,
+				899EB3221C610AA10016F3F1 /* MapViewController.h */,
+				899EB3231C610AA10016F3F1 /* MapViewController.m */,
 				899EB31F1C6001670016F3F1 /* Review.h */,
 				899EB3201C6001670016F3F1 /* Review.m */,
 				899EB3161C5FD4610016F3F1 /* Movie.h */,
@@ -173,6 +178,7 @@
 				899EB3071C5FC24A0016F3F1 /* ViewController.m in Sources */,
 				899EB31B1C5FDEA60016F3F1 /* MovieCell.m in Sources */,
 				899EB3041C5FC24A0016F3F1 /* AppDelegate.m in Sources */,
+				899EB3241C610AA10016F3F1 /* MapViewController.m in Sources */,
 				899EB3181C5FD4610016F3F1 /* Movie.m in Sources */,
 				899EB3011C5FC24A0016F3F1 /* main.m in Sources */,
 				899EB3211C6001670016F3F1 /* Review.m in Sources */,
@@ -323,6 +329,7 @@
 				899EB3151C5FC24A0016F3F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
