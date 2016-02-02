@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) NSMutableArray *objects;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (assign, nonatomic) int pageNum;
 
 @end
 
@@ -24,39 +25,10 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@&page_limit=50", ROTTEN_TOMATO_APIKEY];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (!error) {
-            NSError *jsonParsingError;
-            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
-            if (!jsonParsingError) {
-                NSLog(@"%@", jsonData);
-                
-                NSMutableArray *movieList = [NSMutableArray array];
-                for (NSDictionary *movieDictionary in jsonData[@"movies"]) {
-                    Movie *movie = [[Movie alloc] init];
-                    movie.movieName = movieDictionary[@"title"];
-                    movie.movieDescription = movieDictionary[@"synopsis"];
-                    movie.movieImage = movieDictionary[@"posters"][@"original"];
-                    movie.movieId = movieDictionary[@"id"];
-                    
-                    [movieList addObject:movie];
-                }
-                self.objects = movieList;
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.collectionView reloadData];
-                });
-            }
-        }
-    }];
-    [dataTask resume];    
+    self.objects = [[NSMutableArray alloc] init];
+    self.pageNum = 1;
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,6 +57,48 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
     cell.titleLabel.text = movie.movieName;
     cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:movie.movieImage]]];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.objects.count - 1) {
+        self.pageNum++;
+        [self loadData];
+    }
+}
+
+- (void)loadData {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@&page_limit=50&page=%d", ROTTEN_TOMATO_APIKEY, self.pageNum];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (!error) {
+            NSError *jsonParsingError;
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+            if (!jsonParsingError) {
+                NSLog(@"%@", jsonData);
+                
+                for (NSDictionary *movieDictionary in jsonData[@"movies"]) {
+                    Movie *movie = [[Movie alloc] init];
+                    movie.movieName = movieDictionary[@"title"];
+                    movie.movieDescription = movieDictionary[@"synopsis"];
+                    movie.movieImage = movieDictionary[@"posters"][@"original"];
+                    movie.movieId = movieDictionary[@"id"];
+                    
+                    [self.objects addObject:movie];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView reloadData];
+                });
+            }
+        }
+    }];
+    [dataTask resume];
+    
 }
 
 @end
