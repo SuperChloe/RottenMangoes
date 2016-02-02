@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSMutableArray *objects;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (assign, nonatomic) int pageNum;
+@property (assign, nonatomic) int maxNum;
 
 @end
 
@@ -61,8 +62,10 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.objects.count - 1) {
-        self.pageNum++;
-        [self loadData];
+        if (self.objects.count < self.maxNum) {
+            self.pageNum++;
+            [self loadData];
+        }
     }
 }
 
@@ -80,6 +83,8 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
             if (!jsonParsingError) {
                 NSLog(@"%@", jsonData);
+                
+                self.maxNum = [jsonData[@"total"] intValue];
                 
                 for (NSDictionary *movieDictionary in jsonData[@"movies"]) {
                     Movie *movie = [[Movie alloc] init];
