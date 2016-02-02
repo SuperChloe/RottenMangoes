@@ -38,6 +38,8 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.reviewArray = [[NSMutableArray alloc] init];
+    
     self.titleLabel.text = self.movie.movieName;
     self.descriptionLabel.text = self.movie.movieDescription;
     self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.movie.movieImage]]];
@@ -55,7 +57,6 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
             if (!jsonParsingError) {
                 NSLog(@"%@", jsonData);
                 
-                NSMutableArray *reviewList = [NSMutableArray array];
                 for (NSDictionary *reviewDictionary in jsonData[@"reviews"]) {
                     Review *review = [[Review alloc] init];
                     review.critic = reviewDictionary[@"critic"];
@@ -63,9 +64,8 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
                     review.quote = reviewDictionary[@"quote"];
                     review.url = reviewDictionary[@"links"][@"review"];
                     
-                    [reviewList addObject:review];
+                    [self.reviewArray addObject:review];
                 }
-                self.reviewArray = reviewList;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     Review *review1 = self.reviewArray[0];
