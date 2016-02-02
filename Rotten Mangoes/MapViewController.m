@@ -15,7 +15,6 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *userLocation;
 @property (strong, nonatomic) NSString *postalCode;
-@property (strong, nonatomic) NSMutableArray *theatreArray;
 @property (assign, nonatomic) BOOL initialLocationSet;
 
 @end
@@ -54,16 +53,15 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if (!self.initialLocationSet) {
         self.initialLocationSet = YES;
-    
-    
-    self.userLocation = [locations lastObject];
-    self.mapView.region = MKCoordinateRegionMake(self.userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01));
-    
-    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-    [geoCoder reverseGeocodeLocation:self.userLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        self.postalCode = placemarks[0].postalCode;
-        [self loadData];
-    }];
+
+        self.userLocation = [locations lastObject];
+        self.mapView.region = MKCoordinateRegionMake(self.userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01));
+        
+        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+        [geoCoder reverseGeocodeLocation:self.userLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            self.postalCode = placemarks[0].postalCode;
+            [self loadData];
+        }];
     }
 }
 
@@ -83,24 +81,19 @@
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
             if (!jsonParsingError) {
                 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
-                    Theatre *theatre = [[Theatre alloc] init];
-                    theatre.name = theatreDictionary[@"name"];
-                    theatre.address = theatreDictionary[@"address"];
-                    theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"] doubleValue], [theatreDictionary[@"lng"] doubleValue]);
-                    
-                    NSLog(@"%f, %f", theatre.coordinate.latitude, theatre.coordinate.longitude);
-                    
-                    MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
-                    marker.coordinate = theatre.coordinate;
-                    marker.title = theatre.name;
-                    
-                    [self.mapView addAnnotation:marker];
-                    
-                    
-                    
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
+                        Theatre *theatre = [[Theatre alloc] init];
+                        theatre.name = theatreDictionary[@"name"];
+                        theatre.address = theatreDictionary[@"address"];
+                        theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"] doubleValue], [theatreDictionary[@"lng"] doubleValue]);
+                        
+                        MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
+                        marker.coordinate = theatre.coordinate;
+                        marker.title = theatre.name;
+                        
+                        [self.mapView addAnnotation:marker];
+                    }
                 });
             }
         }
