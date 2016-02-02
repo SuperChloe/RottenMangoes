@@ -8,10 +8,12 @@
 
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
+#import "TheatreCell.h"
 
-@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *userLocation;
 @property (strong, nonatomic) NSString *postalCode;
@@ -29,6 +31,8 @@
     self.locationManager.delegate = self;
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
@@ -64,6 +68,20 @@
     }
 }
 
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.mapView.annotations.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TheatreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    Theatre *theatre = self.mapView.annotations[indexPath.row];
+    cell.titleLabel.text = theatre.title;
+    cell.addressLabel.text = theatre.subtitle;
+    return cell;
+}
+
 #pragma mark - Helper methods
 
 - (void)loadData {
@@ -87,6 +105,7 @@
                         theatre.subtitle = theatreDictionary[@"address"];
                         theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"] doubleValue], [theatreDictionary[@"lng"] doubleValue]);
                         [self.mapView addAnnotation:theatre];
+                        [self.tableView reloadData];
                     }
                 });
             }
