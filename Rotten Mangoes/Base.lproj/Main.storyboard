@@ -22,21 +22,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7yx-5m-NR9">
-                                    <size key="itemSize" width="200" height="200"/>
+                                    <size key="itemSize" width="116" height="143"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="SZu-f8-NJX" customClass="MovieCell">
-                                        <rect key="frame" x="0.0" y="64" width="200" height="200"/>
+                                        <rect key="frame" x="0.0" y="64" width="116" height="143"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="116" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nxS-Rt-svn">
+                                                    <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="jY2-oX-9S0"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbZ-oe-2kx">
-                                                    <rect key="frame" x="8" y="171" width="184" height="21"/>
+                                                    <rect key="frame" x="8" y="110" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="0Jv-Pn-S0v"/>
                                                         <constraint firstAttribute="height" constant="21" id="fcr-HH-Zjb"/>
@@ -50,37 +56,29 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nxS-Rt-svn">
-                                                    <rect key="frame" x="20" y="8" width="160" height="160"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="160" id="qUW-6o-0zZ"/>
-                                                        <constraint firstAttribute="width" constant="160" id="uKQ-Qy-0H5"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="PbZ-oe-2kx" firstAttribute="top" secondItem="nxS-Rt-svn" secondAttribute="bottom" constant="2" id="3ap-Rk-bRs"/>
                                             <constraint firstItem="nxS-Rt-svn" firstAttribute="top" secondItem="SZu-f8-NJX" secondAttribute="top" constant="8" id="4U8-nG-Pbn"/>
                                             <constraint firstItem="PbZ-oe-2kx" firstAttribute="centerX" secondItem="SZu-f8-NJX" secondAttribute="centerX" id="A9K-w4-mvy"/>
-                                            <constraint firstItem="nxS-Rt-svn" firstAttribute="top" secondItem="SZu-f8-NJX" secondAttribute="top" constant="8" id="CNk-Ts-Mi1"/>
                                             <constraint firstItem="PbZ-oe-2kx" firstAttribute="top" secondItem="nxS-Rt-svn" secondAttribute="bottom" constant="3" id="EzC-XR-ZZW"/>
-                                            <constraint firstItem="nxS-Rt-svn" firstAttribute="centerX" secondItem="SZu-f8-NJX" secondAttribute="centerX" id="Fot-oN-OuF"/>
+                                            <constraint firstItem="nxS-Rt-svn" firstAttribute="leading" secondItem="SZu-f8-NJX" secondAttribute="leadingMargin" id="Hh0-IE-Atn"/>
                                             <constraint firstAttribute="trailing" secondItem="PbZ-oe-2kx" secondAttribute="trailing" constant="8" id="Mcw-IY-JN2"/>
                                             <constraint firstItem="nxS-Rt-svn" firstAttribute="leading" secondItem="SZu-f8-NJX" secondAttribute="leading" constant="20" id="P3T-su-XpC"/>
                                             <constraint firstAttribute="trailing" secondItem="nxS-Rt-svn" secondAttribute="trailing" constant="20" id="Rru-3V-WBe"/>
                                             <constraint firstItem="PbZ-oe-2kx" firstAttribute="leading" secondItem="SZu-f8-NJX" secondAttribute="leading" constant="8" id="a9w-nH-lde"/>
                                             <constraint firstItem="PbZ-oe-2kx" firstAttribute="centerX" secondItem="SZu-f8-NJX" secondAttribute="centerX" id="aFJ-UO-RyX"/>
                                             <constraint firstItem="PbZ-oe-2kx" firstAttribute="trailing" secondItem="SZu-f8-NJX" secondAttribute="trailingMargin" id="aI9-3N-WfK"/>
-                                            <constraint firstItem="PbZ-oe-2kx" firstAttribute="top" secondItem="nxS-Rt-svn" secondAttribute="bottom" constant="3" id="eYd-8I-3N0"/>
-                                            <constraint firstAttribute="trailing" secondItem="nxS-Rt-svn" secondAttribute="trailing" constant="20" id="i8m-wf-olv"/>
-                                            <constraint firstItem="nxS-Rt-svn" firstAttribute="leading" secondItem="SZu-f8-NJX" secondAttribute="leading" constant="20" id="m5X-nF-XUe"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="nxS-Rt-svn" secondAttribute="trailing" id="avL-5t-x6O"/>
+                                            <constraint firstItem="nxS-Rt-svn" firstAttribute="top" secondItem="SZu-f8-NJX" secondAttribute="topMargin" id="mxW-Uv-tNT"/>
                                             <constraint firstItem="PbZ-oe-2kx" firstAttribute="leading" secondItem="SZu-f8-NJX" secondAttribute="leadingMargin" id="oG0-Ft-Mgk"/>
                                             <constraint firstItem="nxS-Rt-svn" firstAttribute="centerX" secondItem="SZu-f8-NJX" secondAttribute="centerX" id="omq-cr-em5"/>
                                             <constraint firstItem="PbZ-oe-2kx" firstAttribute="top" secondItem="nxS-Rt-svn" secondAttribute="bottom" constant="3" id="tae-MS-zy5"/>
                                         </constraints>
-                                        <size key="customSize" width="200" height="200"/>
+                                        <size key="customSize" width="116" height="143"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="4U8-nG-Pbn"/>
@@ -399,7 +397,18 @@
                     <view key="view" contentMode="scaleToFill" id="C26-Bg-Gf6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PAK-D9-uMZ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ebe-YM-6BF" firstAttribute="top" secondItem="PAK-D9-uMZ" secondAttribute="bottom" id="RK2-z3-Dxu"/>
+                            <constraint firstItem="PAK-D9-uMZ" firstAttribute="top" secondItem="mbg-li-vwP" secondAttribute="bottom" id="h3a-7C-GOB"/>
+                            <constraint firstItem="PAK-D9-uMZ" firstAttribute="leading" secondItem="C26-Bg-Gf6" secondAttribute="leading" id="leK-kh-zA6"/>
+                            <constraint firstAttribute="trailing" secondItem="PAK-D9-uMZ" secondAttribute="trailing" id="yoB-Zb-rDs"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Pa-IW-6qA" userLabel="First Responder" sceneMemberID="firstResponder"/>
