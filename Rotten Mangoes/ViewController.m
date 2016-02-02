@@ -69,6 +69,8 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
     }
 }
 
+#pragma mark - Helper methods
+
 - (void)loadData {
     
     NSURLSession *session = [NSURLSession sharedSession];

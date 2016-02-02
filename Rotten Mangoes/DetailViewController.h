@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) Movie *movie;
 
+- (void)loadDetailData;
+
 @end
