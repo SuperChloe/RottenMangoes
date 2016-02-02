@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface Theatre : NSObject
+@interface Theatre : NSObject <MKAnnotation>
+
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *address;
+@property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 
 @end

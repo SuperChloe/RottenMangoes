@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSString *postalCode;
+@property (strong, nonatomic) NSMutableArray *theatreArray;
 
 @end
 
@@ -72,9 +73,12 @@
             if (!jsonParsingError) {
                 
                 for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
-                    Movie *movie = [[Movie alloc] init];
+                    Theatre *theatre = [[Theatre alloc] init];
+                    theatre.name = theatreDictionary[@"name"];
+                    theatre.address = theatreDictionary[@"address"];
+                    theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"] doubleValue], [theatreDictionary[@"lng"] doubleValue]);
                     
-                    [self.objects addObject:movie];
+                    [self.theatreArray addObject:theatre];
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
