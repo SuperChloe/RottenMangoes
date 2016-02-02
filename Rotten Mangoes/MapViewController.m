@@ -7,8 +7,12 @@
 //
 
 #import "MapViewController.h"
+#import <MapKit/MapKit.h>
 
-@interface MapViewController ()
+@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -16,7 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.mapView.delegate = self;
+    self.mapView.showsUserLocation = YES;
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +36,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - CLLocationManagerDelegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.locationManager startUpdatingLocation];
+    }
 }
-*/
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *userLocation = [locations lastObject];
+    self.mapView.region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.02, 0.02));
+}
 
 @end
