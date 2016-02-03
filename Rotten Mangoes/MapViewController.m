@@ -40,8 +40,6 @@
     }
     
     self.textField.delegate = self;
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,6 +94,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.textField resignFirstResponder];
+    self.postalCode = self.textField.text;
+    [self loadData];
     return YES;
 }
 
