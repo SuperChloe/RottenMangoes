@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "TheatreCell.h"
 
-@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -18,6 +18,7 @@
 @property (strong, nonatomic) CLLocation *userLocation;
 @property (strong, nonatomic) NSString *postalCode;
 @property (assign, nonatomic) BOOL initialLocationSet;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
@@ -37,6 +38,9 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
     }
+    
+    self.textField.delegate = self;
+    
     
 }
 
@@ -86,6 +90,13 @@
     cell.distanceLabel.text = [NSString stringWithFormat:@"%.02f km", (distance / 1000)];
     
     return cell;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - Helper methods

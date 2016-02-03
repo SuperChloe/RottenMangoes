@@ -88,24 +88,24 @@ static NSString *ROTTEN_TOMATO_APIKEY = @"j9fhnct2tp8wu2q9h75kanh9";
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    Review *review1 = self.reviewArray[0];
-                    Review *review2 = self.reviewArray[1];
-                    Review *review3 = self.reviewArray[2];
+                        Review *review1 = self.reviewArray[0];
+                        Review *review2 = self.reviewArray[1];
+                        Review *review3 = self.reviewArray[2];
                     
-                    self.critic1.text = review1.critic;
-                    self.publication1.text = review1.publication;
-                    self.quote1.text = review1.quote;
-                    self.url1.text = review1.url;
-                    
-                    self.critic2.text = review2.critic;
-                    self.publication2.text = review2.publication;
-                    self.quote2.text = review2.quote;
-                    self.url2.text = review2.url;
-                    
-                    self.critic3.text = review3.critic;
-                    self.publication3.text = review3.publication;
-                    self.quote3.text = review3.quote;
-                    self.url3.text = review3.url;
+                        self.critic1.text = review1.critic;
+                        self.publication1.text = review1.publication;
+                        self.quote1.text = review1.quote;
+                        self.url1.text = review1.url;
+
+                        self.critic2.text = review2.critic;
+                        self.publication2.text = review2.publication;
+                        self.quote2.text = review2.quote;
+                        self.url2.text = review2.url;
+
+                        self.critic3.text = review3.critic;
+                        self.publication3.text = review3.publication;
+                        self.quote3.text = review3.quote;
+                        self.url3.text = review3.url;
                 });
             }
         }

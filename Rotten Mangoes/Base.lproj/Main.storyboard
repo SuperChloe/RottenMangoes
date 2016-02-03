@@ -481,6 +481,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter postal code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W1r-Ho-cfr">
+                                <rect key="frame" x="20" y="72" width="206" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="206" id="EHA-VG-Wf9"/>
+                                    <constraint firstAttribute="height" constant="30" id="bEi-Ys-qsY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -495,6 +504,8 @@
                             <constraint firstItem="dWv-7U-MH2" firstAttribute="leading" secondItem="C26-Bg-Gf6" secondAttribute="leading" id="mgc-cg-dtp"/>
                             <constraint firstItem="ebe-YM-6BF" firstAttribute="top" secondItem="dWv-7U-MH2" secondAttribute="bottom" id="pWF-Eu-D2x"/>
                             <constraint firstItem="dWv-7U-MH2" firstAttribute="height" secondItem="C26-Bg-Gf6" secondAttribute="height" multiplier="0.5" id="sJv-eg-ljz"/>
+                            <constraint firstItem="W1r-Ho-cfr" firstAttribute="leading" secondItem="C26-Bg-Gf6" secondAttribute="leading" constant="20" id="tbI-5K-cJo"/>
+                            <constraint firstItem="W1r-Ho-cfr" firstAttribute="top" secondItem="mbg-li-vwP" secondAttribute="bottom" constant="8" id="xTd-mQ-dQI"/>
                             <constraint firstAttribute="trailing" secondItem="PAK-D9-uMZ" secondAttribute="trailing" id="yoB-Zb-rDs"/>
                         </constraints>
                         <variation key="default">
@@ -509,6 +520,7 @@
                     <connections>
                         <outlet property="mapView" destination="PAK-D9-uMZ" id="Gx2-wm-Wgj"/>
                         <outlet property="tableView" destination="dWv-7U-MH2" id="mB2-X4-mCd"/>
+                        <outlet property="textField" destination="W1r-Ho-cfr" id="C6v-c8-HW4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Pa-IW-6qA" userLabel="First Responder" sceneMemberID="firstResponder"/>
