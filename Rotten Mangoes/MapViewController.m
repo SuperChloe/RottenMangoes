@@ -79,6 +79,12 @@
     Theatre *theatre = self.mapView.annotations[indexPath.row];
     cell.titleLabel.text = theatre.title;
     cell.addressLabel.text = theatre.subtitle;
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:theatre.coordinate.latitude longitude:theatre.coordinate.longitude];
+    CLLocationDistance distance = [location distanceFromLocation:self.mapView.userLocation.location];
+    
+    cell.distanceLabel.text = [NSString stringWithFormat:@"%.02f km", (distance / 1000)];
+    
     return cell;
 }
 

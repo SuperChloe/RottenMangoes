@@ -444,12 +444,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dist." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZc-ir-ZBU">
-                                                    <rect key="frame" x="538" y="0.0" width="54" height="37"/>
+                                                    <rect key="frame" x="533" y="0.0" width="67" height="37"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="54" id="ZBs-Gt-Wwb"/>
+                                                        <constraint firstAttribute="width" constant="67" id="ZBs-Gt-Wwb"/>
                                                         <constraint firstAttribute="height" constant="37" id="oyp-qB-BRy"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -458,11 +458,11 @@
                                                 <constraint firstItem="Z4G-Wl-Wqk" firstAttribute="top" secondItem="ao0-vN-8uT" secondAttribute="top" id="1dk-ne-tYB"/>
                                                 <constraint firstAttribute="bottom" secondItem="AM2-Kz-LeS" secondAttribute="bottom" id="CyT-NM-HEk"/>
                                                 <constraint firstItem="Z4G-Wl-Wqk" firstAttribute="leading" secondItem="ao0-vN-8uT" secondAttribute="leading" constant="13" id="Eeg-LH-Slg"/>
-                                                <constraint firstItem="cZc-ir-ZBU" firstAttribute="leading" secondItem="Z4G-Wl-Wqk" secondAttribute="trailing" constant="25" id="P5K-6W-9Di"/>
+                                                <constraint firstItem="cZc-ir-ZBU" firstAttribute="leading" secondItem="Z4G-Wl-Wqk" secondAttribute="trailing" constant="20" id="P5K-6W-9Di"/>
                                                 <constraint firstItem="cZc-ir-ZBU" firstAttribute="top" secondItem="ao0-vN-8uT" secondAttribute="top" id="S06-v6-5UD"/>
                                                 <constraint firstItem="AM2-Kz-LeS" firstAttribute="top" secondItem="Z4G-Wl-Wqk" secondAttribute="bottom" constant="1" id="U2U-ns-nuS"/>
-                                                <constraint firstAttribute="trailing" secondItem="cZc-ir-ZBU" secondAttribute="trailing" constant="8" id="cn0-eH-N3s"/>
-                                                <constraint firstItem="cZc-ir-ZBU" firstAttribute="leading" secondItem="AM2-Kz-LeS" secondAttribute="trailing" constant="25" id="f2d-BF-JPS"/>
+                                                <constraint firstAttribute="trailing" secondItem="cZc-ir-ZBU" secondAttribute="trailing" id="cn0-eH-N3s"/>
+                                                <constraint firstItem="cZc-ir-ZBU" firstAttribute="leading" secondItem="AM2-Kz-LeS" secondAttribute="trailing" constant="20" id="f2d-BF-JPS"/>
                                                 <constraint firstAttribute="bottom" secondItem="cZc-ir-ZBU" secondAttribute="bottom" constant="6" id="fW7-qd-qAV"/>
                                                 <constraint firstItem="AM2-Kz-LeS" firstAttribute="leading" secondItem="ao0-vN-8uT" secondAttribute="leading" constant="13" id="gPy-6Q-UFv"/>
                                             </constraints>
