@@ -94,8 +94,14 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.textField resignFirstResponder];
-    self.postalCode = self.textField.text;
-    [self loadData];
+    
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:self.textField.text completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        self.userLocation = placemarks[0].location;
+        self.mapView.region = MKCoordinateRegionMake(self.userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01));
+        self.postalCode = self.textField.text;
+        [self loadData];
+    }];
     return YES;
 }
 
