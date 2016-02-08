@@ -100,6 +100,7 @@
         self.userLocation = placemarks[0].location;
         self.mapView.region = MKCoordinateRegionMake(self.userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01));
         self.postalCode = self.textField.text;
+        [self.mapView removeAnnotations:self.mapView.annotations];
         [self loadData];
     }];
     return YES;
